@@ -66,11 +66,12 @@ USE bookingbase;
     created_when timestamp default CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     rekv_id int not null,
-    module int not null,
+    res_module int not null,
+    res_date date not null,
     bookers_u_id int not null,
 
-    primary key (room_id, module),
-    unique (rekv_id, module),
+    primary key (room_id, res_module, res_date),
+    unique (rekv_id, res_module, res_date),
     foreign key(rekv_id) references rekvirents(id),
     foreign key(bookers_u_id) references users(id)
   );
@@ -132,11 +133,11 @@ insert into confiqs(name, room_id, furniture, place_x, place_y)
         ('A', 401, 'ST', 5000, 3000);
 
 -- reservations
-insert into reservations (room_id, rekv_id, module, bookers_u_id)
-  values(401, 1, 8, 1),
-        (402, 2, 8, 1),
-        (403, 3, 8, 1),
-        (403, 1, 9, 1),
-        (405, 3, 9, 1),
-        (401, 6, 9, 2),
-        (401, 6, 10, 2);
+insert into reservations (room_id, rekv_id, res_module, res_date, bookers_u_id)
+  values(401, 1, 8, '2019-3-1', 1),
+        (401, 1, 9, '2019-3-1', 1),
+        (402, 2, 9, '2019-3-1', 1),
+        (401, 1, 8, '2019-3-2', 1),
+        (405, 3, 9, '2019-3-5', 1),
+        (401, 6, 9, '2019-3-6', 2),
+        (401, 6, 10, '2019-3-7', 2);
