@@ -12,8 +12,8 @@ USE bookingbase;
     unique (user_id, class_id)
   );
 
--- classes
-  create table classes(
+-- course
+  create table course(
     id varchar(20) not null primary key,          -- dkpbweb181a
     size int not null,                            -- number of students in class
     created_when timestamp default CURRENT_TIMESTAMP,
@@ -54,6 +54,7 @@ USE bookingbase;
     name varchar(20) not null,
     room_id int not null,
     furniture enum('ST','TT','WB') not null, -- ST = student table, TT = teachertable, WB = Board
+    rotation enum('VT','HT') not null,
     place_x int not null,
     place_y int not null,
 
@@ -90,8 +91,8 @@ insert into rekvirents(user_id, class_id)
         (null, 2),
         (null, 3);
 
--- classes
-insert into classes(rekv_id, id, size)
+-- course
+insert into course(rekv_id, id, size)
   values(1, 'dkpbw18a1', 5),
         (2, 'dkpbw18a2', 3),
         (3, 'dkmmd16a1', 31),
@@ -118,19 +119,19 @@ insert into rooms(id, type, depth, width, ent_direction, ent_location, board_dir
 
 
 -- config
-insert into confiqs(name, room_id, furniture, place_x, place_y)
-  values('A', 401, 'TT', 2000, 1000),
-        ('A', 401, 'ST', 3000, 1000),
-        ('A', 401, 'ST', 4000, 1000),
-        ('A', 401, 'ST', 5000, 1000),
-        ('A', 401, 'ST', 2000, 2000),
-        ('A', 401, 'ST', 3000, 2000),
-        ('A', 401, 'ST', 4000, 2000),
-        ('A', 401, 'ST', 5000, 2000),
-        ('A', 401, 'ST', 2000, 3000),
-        ('A', 401, 'ST', 3000, 3000),
-        ('A', 401, 'ST', 4000, 3000),
-        ('A', 401, 'ST', 5000, 3000);
+insert into confiqs(name, room_id, furniture, place_x, place_y, rotation)
+  values('A', 401, 'TT', 2000, 1000, 'VT'),
+        ('A', 401, 'ST', 3000, 1000, 'VT'),
+        ('A', 401, 'ST', 4000, 1000, 'HT'),
+        ('A', 401, 'ST', 5000, 1000, 'VT'),
+        ('A', 401, 'ST', 2000, 2000, 'VT'),
+        ('A', 401, 'ST', 3000, 2000, 'HT'),
+        ('A', 401, 'ST', 4000, 2000, 'HT'),
+        ('A', 401, 'ST', 5000, 2000, 'VT'),
+        ('A', 401, 'ST', 2000, 3000, 'HT'),
+        ('A', 401, 'ST', 3000, 3000, 'VT'),
+        ('A', 401, 'ST', 4000, 3000, 'VT'),
+        ('A', 401, 'ST', 5000, 3000, 'VT');
 
 -- reservations
 insert into reservations (room_id, rekv_id, res_module, res_date, bookers_u_id)
@@ -140,4 +141,11 @@ insert into reservations (room_id, rekv_id, res_module, res_date, bookers_u_id)
         (401, 1, 8, '2019-3-2', 1),
         (405, 3, 9, '2019-3-5', 1),
         (401, 6, 9, '2019-3-6', 2),
-        (401, 6, 10, '2019-3-7', 2);
+        (401, 6, 10, '2019-3-7', 2),
+        (401, 6, 9, '2019-2-18', 2),
+        (401, 6, 10, '2019-2-18', 2),
+        (401, 6, 11, '2019-2-18', 2),
+        (401, 6, 12, '2019-2-18', 2),
+        (401, 6, 13, '2019-2-20', 2),
+        (401, 6, 14, '2019-2-20', 2),
+        (401, 6, 15, '2019-2-20', 2);

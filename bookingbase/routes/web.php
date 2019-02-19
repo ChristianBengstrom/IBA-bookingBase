@@ -12,12 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/room');
+
 });
 
 // AUTH
 // Route::auth();
 // Route::get('/home', 'HomeController@index');
 
-// Route::resource('?', '?');
-// use "php artisan route::list to see"
+Route::resource('room', 'RoomController');
+Route::resource('room.week', 'WeekController');
+
+// Route::model('room', 'Room');
+// Route::resource('rooms.reservation', 'ReservationController');

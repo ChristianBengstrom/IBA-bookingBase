@@ -5,10 +5,30 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// // Bootstrap
+// @import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+.scheme {
+  color: $body-bg;
+
+  caption {
+    background-color:#555
+  };
+  // td {
+  //   background-color:#f1f1f1
+  // };
+  // .span1 {
+  //   background-color:gray;
+  // };
+  // .span2 {
+  //   background-color:#f1f1f1;
+  // };
+  // tr {
+  //   background-color:gray;
+  // };
+};
