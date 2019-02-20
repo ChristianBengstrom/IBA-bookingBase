@@ -53,7 +53,7 @@
     <th>Friday</th>
   </tr>
   <tr>
-    <td>8-9</td>
+    <td class="tmp">8-9</td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 8"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 8"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 8"></td>
@@ -61,7 +61,7 @@
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 8"></td>
   </tr>
   <tr>
-    <td>9-10</td>
+    <td class="tmp">9-10</td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 9"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 9"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 9"></td>
@@ -69,7 +69,7 @@
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 9"></td>
   </tr>
   <tr>
-    <td>10-11</td>
+    <td class="tmp">10-11</td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 10"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 10"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 10"></td>
@@ -77,7 +77,7 @@
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 10"></td>
   </tr>
   <tr>
-    <td>11-12</td>
+    <td class="tmp">11-12</td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 11"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 11"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 11"></td>
@@ -85,7 +85,7 @@
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 11"></td>
   </tr>
   <tr>
-    <td>12-13</td>
+    <td class="tmp">12-13</td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 12"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 12"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 12"></td>
@@ -93,7 +93,7 @@
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 12"></td>
   </tr>
   <tr>
-    <td>13-14</td>
+    <td class="tmp">13-14</td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 13"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 13"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 13"></td>
@@ -101,7 +101,7 @@
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 13"></td>
   </tr>
   <tr>
-    <td>14-15</td>
+    <td class="tmp">14-15</td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 14"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 14"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 14"></td>
@@ -109,7 +109,7 @@
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 14"></td>
   </tr>
   <tr>
-    <td>15-16</td>
+    <td class="tmp">15-16</td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 15"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 15"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 15"></td>
@@ -117,5 +117,17 @@
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 15"></td>
   </tr>
 </table>
+<br>
+
+{{-- {!! Form::model(new App\Models\Reservation, ['route' => ['room.reservation.store', $r->id], 'id' => 'bookForm']) !!}
+    {!! Form::button('Book!', ['type'=>'submit', 'id' => 'book' , 'disabled' => 'true']) !!}
+{!! Form::close() !!} --}}
+
+<form method="POST" action="http://localhost:8000/room/401/reservation" accept-charset="UTF-8" id="bookForm">
+    <input name="_token" type="hidden" value="jdqTIqImXTykzYGTKD3JmfvevpxWymT6ObtkKDAR">
+    {{-- <input name="date" type="number" value="0">
+    <input name="module" type="number" value="0"> --}}
+    <button type="submit" id="book" disabled="true">Book!</button>
+</form>
 
 @endsection

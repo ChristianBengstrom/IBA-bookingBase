@@ -23,6 +23,4 @@ Route::get('/', function () {
 Route::resource('room', 'RoomController');
 Route::resource('room.week', 'WeekController');
 Route::resource('room.confiq', 'ConfiqController');
-
-// Route::model('room', 'Room');
-// Route::resource('rooms.reservation', 'ReservationController');
+Route::resource('room.reservation', 'ReservationController');

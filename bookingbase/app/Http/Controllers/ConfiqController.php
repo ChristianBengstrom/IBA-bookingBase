@@ -15,6 +15,7 @@ class ConfiqController extends Controller
      */
     public function index()
     {
+
         // Show all confiqs on a room
         // ROUTE: room/{room}/confiq
     }
