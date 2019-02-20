@@ -1,20 +1,29 @@
 'use strict';
 let execute = function () {
+
   if (typeof resObj !== 'undefined') {
-    // console.log(resObj[0].res_date);
-    // console.log(resObj[0].res_module);
+    let table = $("scheme");
 
-    for (var i = 0; i < resObj.length; i++) {
-      console.log(resObj[i].res_date);
-      console.log(resObj[i].res_module);
-      $c('2019-02-20')[0].style.backgroundColor='red';
-      // $c('scheme')[0].style.backgroundColor='red';
+    for ( var i = 0; i < resObj.length; i++ ) {
+
+      let resDate = resObj[i].res_date;
+      let resModule = resObj[i].res_module;
+
+      for ( var r = 1, row; row = table.rows[r]; r++ ) {
+        for ( var c = 1, col; col = row.cells[c]; c++ ) {
+
+          let classStr = col.className;
+          let classArr = classStr.split(" ");
+          if ( classArr[0] == resObj[i].res_date && classArr[1] == resObj[i].res_module ) {
+            col.style.backgroundColor = 'darkred';
+          }
+
+        }
+      }
     }
-}
+  }
 
 }
 
-/*
- * activate theFunction when document has finished loading
- */
+
 window.addEventListener('load', execute);

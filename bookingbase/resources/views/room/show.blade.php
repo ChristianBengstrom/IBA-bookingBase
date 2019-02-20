@@ -34,7 +34,7 @@
   <h1>Schedule for: <em>{{ $r->type }}-{{ $r->id }}</em></h1>
 
 
-  <table class="scheme">
+  <table class="scheme" id='scheme'>
   <caption>
     <a href="{{ route('room.week.show', [$r->id, $r->now_week-1])  }}"><<</a>
     Week: {{ $r->now_week }}
@@ -54,69 +54,68 @@
   </tr>
   <tr>
     <td>8-9</td>
-    <td class="{{ $r->week_start_date }} 8"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 8"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 8"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 8"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}} 8"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 8"></td>
   </tr>
   <tr>
     <td>9-10</td>
-    <td class="{{ $r->week_start_date }} 9"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 9"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 9"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 9"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}} 9"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 9"></td>
   </tr>
   <tr>
     <td>10-11</td>
-    <td class="{{ $r->week_start_date }} 10"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 10"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 10"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 10"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}} 10"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 10"></td>
   </tr>
   <tr>
     <td>11-12</td>
-    <td class="{{ $r->week_start_date }} 11"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 11"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 11"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 11"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}} 11"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 11"></td>
   </tr>
   <tr>
     <td>12-13</td>
-    <td class="{{ $r->week_start_date }} 12"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 12"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 12"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 12"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}} 12"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 12"></td>
   </tr>
   <tr>
     <td>13-14</td>
-    <td class="{{ $r->week_start_date }} 13"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 13"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 13"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 13"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}} 13"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 13"></td>
   </tr>
   <tr>
     <td>14-15</td>
-    <td class="{{ $r->week_start_date }}14"></td>
-    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}}14"></td>
-    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}}14"></td>
-    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}}14"></td>
-    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}}14"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 14"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 14"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 14"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}} 14"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 14"></td>
   </tr>
   <tr>
     <td>15-16</td>
-    <td class="{{ $r->week_start_date }} 15"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +1 days'))}} 15"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +2 days'))}} 15"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +3 days'))}} 15"></td>
     <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +4 days'))}} 15"></td>
+    <td class="{{ date('Y-m-d', strtotime($r->week_start_date. ' +5 days'))}} 15"></td>
   </tr>
 </table>
-
 
 @endsection

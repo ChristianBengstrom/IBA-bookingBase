@@ -56,7 +56,7 @@ class WeekController extends Controller
         $week = $id;
       };
 
-      $date1 = date( "Y-m-d", strtotime($year."W".$week."1") ); // First day of week
+      $date1 = date( "Y-m-d", strtotime($year."W".$week."0") ); // First day of week
       $date2 = date( "Y-m-d", strtotime($year."W".$week."5") ); // Last day of week
       // echo $date1 . " - " . $date2;
 
