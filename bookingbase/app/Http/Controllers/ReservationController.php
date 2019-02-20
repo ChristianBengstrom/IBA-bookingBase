@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Reservation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Redirect;
 
 class ReservationController extends Controller
 {
@@ -14,8 +16,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-      // $reservations = Project::all();
-      // return view('route?', compact('reservations'));
+        //
     }
 
     /**
@@ -25,7 +26,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('reservation.create');
+        //
     }
 
     /**
@@ -36,16 +37,28 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+      $input = Input::all();
+      var_dump($input);
+      // $input['project_id'] = $request->id;
+
+      // $data = array(
+      //     array('user_id'=>'Coder 1', 'subject_id'=> 4096),
+      //     array('user_id'=>'Coder 2', 'subject_id'=> 2048),
+      //     //...
+      //   );
+      //
+      //   DB::table('table')->insert($data); // Query Builder approach
+        return view('room.receipt')->with('message', 'Your booking has been registered!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show(Reservation $Reservation)
+    public function show(Reservation $reservation)
     {
         //
     }
@@ -53,10 +66,10 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservation $Reservation)
+    public function edit(Reservation $reservation)
     {
         //
     }
@@ -65,10 +78,10 @@ class ReservationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Reservation $reservation)
     {
         //
     }
@@ -76,10 +89,10 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reservation $reservation)
     {
         //
     }

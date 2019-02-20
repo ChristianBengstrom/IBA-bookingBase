@@ -11,3 +11,7 @@
   background-color: #555;
 }
 
+.selected {
+  background-color: lightgreen;
+}
+
