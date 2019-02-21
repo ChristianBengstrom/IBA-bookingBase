@@ -34,34 +34,33 @@ let execute = function () {
           e.target.style.backgroundColor == 'darkred')
       return;
 
+      // toggle class "selected" on target:
       e.target.classList.toggle('selected');
-      // BTN show/hide
+
+      var qtSelected = $("qtSelected");
+      qtSelected.setAttribute("value", $c('selected').length);
+
       if ($c('selected').length>0) {
-        toggleBookBtn();
+        toggleBookBtn();          // BTN show
       } else {
-        bookBtn.disabled = true;
+        bookBtn.disabled = true;  // BTN hide
       }
 
+      // if class "selected" exists on target:
       if (e.target.classList[2]) {
-        var newResDate = document.createElement("INPUT");
-        newResDate.setAttribute("value", e.target.classList[0]);
-        newResDate.setAttribute("id", 'input' + e.target.classList[0]);
-        newResDate.setAttribute("type", 'text');
-        newResDate.setAttribute("name", e.target.classList[0] + '_' + e.target.classList[1] + 'date');
-        form.insertBefore(newResDate, bookBtn);
+        //insert input element
+        var newResEl = document.createElement("INPUT");
+        newResEl.setAttribute("value", e.target.classList[0] + " " + e.target.classList[1]);
+        newResEl.setAttribute("id", 'res' + e.target.classList[0] + " " + e.target.classList[1]);
+        newResEl.setAttribute("type", 'hidden');
+        newResEl.setAttribute("name", 'newRes' + ($t('input').length-1));
+        form.insertBefore(newResEl, bookBtn);
 
-        var newResModule = document.createElement("INPUT");
-        newResModule.setAttribute("value", e.target.classList[1]);
-        newResModule.setAttribute("id", 'input' + e.target.classList[1]);
-        newResModule.setAttribute("type", 'number');
-        newResModule.setAttribute("name", e.target.classList[0] + '_' + e.target.classList[1] + 'module');
-        form.insertBefore(newResModule, bookBtn);
       } else {
-        let newDateEl = $( 'input' + e.target.classList[0] );
-        newDateEl.parentNode.removeChild(newDateEl);
+        //remove input element
+        let newResEl = $( 'res' + e.target.classList[0] + " " + e.target.classList[1] );
+        newResEl.parentNode.removeChild(newResEl);
 
-        let newModuleEl = $( 'input' + e.target.classList[1] );
-        newModuleEl.parentNode.removeChild(newModuleEl);
       }
   });
 
