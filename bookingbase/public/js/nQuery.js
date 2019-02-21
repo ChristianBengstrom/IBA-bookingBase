@@ -8,3 +8,6 @@ var $ = function (foo) {
 var $c= (foo) => {
   return document.getElementsByClassName(foo);
 };
+var $t= (foo) => {
+  return document.getElementsByTagName(foo);
+};

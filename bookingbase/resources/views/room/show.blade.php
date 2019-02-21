@@ -119,15 +119,15 @@
 </table>
 <br>
 
-{{-- {!! Form::model(new App\Models\Reservation, ['route' => ['room.reservation.store', $r->id], 'id' => 'bookForm']) !!}
+{!! Form::model(new App\Models\Reservation, ['route' => ['room.reservation.store', $r->id], 'id' => 'bookForm']) !!}
+    {!! Form::hidden('qtSelected', 0, ['id' => 'qtSelected']); !!}
     {!! Form::button('Book!', ['type'=>'submit', 'id' => 'book' , 'disabled' => 'true']) !!}
-{!! Form::close() !!} --}}
+{!! Form::close() !!}
 
-<form method="POST" action="http://localhost:8000/room/401/reservation" accept-charset="UTF-8" id="bookForm">
+{{-- <form method="POST" action="http://localhost:8000/room/401/reservation" accept-charset="UTF-8" id="bookForm">
     <input name="_token" type="hidden" value="jdqTIqImXTykzYGTKD3JmfvevpxWymT6ObtkKDAR">
-    {{-- <input name="date" type="number" value="0">
-    <input name="module" type="number" value="0"> --}}
+    <input id="qtSelected" name="qtSelected" type="number" value="0">
     <button type="submit" id="book" disabled="true">Book!</button>
-</form>
+</form> --}}
 
 @endsection
