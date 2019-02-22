@@ -12,6 +12,7 @@ let execute = function () {
 
       let resDate = resObj[i].res_date;
       let resModule = resObj[i].res_module;
+      let resName = resObj[i].name;
 
       for ( var r = 1, row; row = tbl.rows[r]; r++ ) {
         for ( var c = 1, col; col = row.cells[c]; c++ ) {
@@ -20,6 +21,7 @@ let execute = function () {
           let classArr = classStr.split(" ");
           if ( classArr[0] == resObj[i].res_date && classArr[1] == resObj[i].res_module ) {
             col.style.backgroundColor = 'darkred';
+            col.innerHTML = '<em>- ' + resName + ' -</em>';
           }
 
         }

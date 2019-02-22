@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -42,9 +43,8 @@ class ReservationController extends Controller
 
       $input = Input::all();
       $input['room_id'] = $room->id;
-      $input['bookers_u_id'] = 1; //AUTH::login??
-      $input['rekv_id'] = 6; //??
-      var_dump($input);
+      $input['bookers_u_id'] = Auth::id();
+      $input['rekv_id'] = Auth::id();
 
       $newResArr = array();
       foreach ( $_POST as $key => $value )
@@ -56,8 +56,6 @@ class ReservationController extends Controller
           }
       }
 
-      var_dump($newResArr);
-
       $data = array();
       for ($i=0; $i < count($newResArr); $i++) {
         print '<br />';
@@ -65,28 +63,20 @@ class ReservationController extends Controller
         for ($c=0; $c < 10; $c++) {
           $resDate .= $newResArr[$i][$c];
         }
-        print $resDate;
+
         $resModule = null;
-        for ($c=10; $c < 13; $c++) {
+
+        for ($c=10; $c < strlen($newResArr[$i]); $c++) {
           $resModule .= $newResArr[$i][$c];
         }
-        print $resModule;
-
-        // $dataline = sprintf("'room_id'=> %s, 'rekv_id' => %s, 'resDate' => %s, 'resModule' => %s, $input['bookers_u_id']"
-        //           , $room->id
-        //           , $input['rekv_id']
-        //           , $resDate
-        //           , $resModule);
 
         $dataline = array('room_id'=>$room->id, 'rekv_id'=> $input['rekv_id'], 'res_date'=> $resDate, 'res_module'=> $resModule, 'bookers_u_id'=> $input['bookers_u_id']);
 
         array_push($data,$dataline);
       }
-      print '<br />';
-      var_dump( $data );
-
+        dump($data);
         DB::table('reservations')->insert($data); // Query Builder approach
-        return view('room.receipt')->with('message', 'Your booking has been registered!');
+        return view('room.receipt', compact('room'))->with('message', 'Your booking has been registered!');
     }
 
     /**

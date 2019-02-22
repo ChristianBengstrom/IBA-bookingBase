@@ -11,11 +11,6 @@ use App\Models\Room;
 
 class RoomController extends Controller
 {
-  // Validation rules
-  // protected $rules = [
-  //   		'name' => ['required', 'min:3'],
-  //   		'slug' => ['required'],
-  //   	];
     /**
      * Display a listing of the resource.
      *
@@ -66,12 +61,13 @@ class RoomController extends Controller
       $date2 = date( "Y-m-d", strtotime($year."W".$week."5") ); // Last day of week
       // echo $date1 . " - " . $date2;
 
-        $room_resavations = DB::table('reservations')
-            ->join('rooms', 'id', '=', 'reservations.room_id')
-            ->select('rooms.*', 'reservations.*')
+        $room_resavations = DB::table('reservations as r')
+            ->join('rooms', 'id', '=', 'r.room_id')
+            ->join('users as u', 'u.id', '=', 'r.rekv_id')
+            ->select('rooms.id', 'rooms.type', 'r.res_date', 'r.res_module', 'u.id as uid', 'u.name')
             ->where('rooms.id', '=', $room->id)
-            ->where('reservations.res_date', '>', $date1)
-            ->where('reservations.res_date', '<', $date2)
+            ->where('r.res_date', '>', $date1)
+            ->where('r.res_date', '<', $date2)
             ->get();
 
         if (!$room_resavations->count()) {
@@ -86,6 +82,7 @@ class RoomController extends Controller
             $room[0]->{"week_start_date"} = $date1;
             $room[0]->{"has_reservations"} = true;
 
+            // dump($room);
             return view('room.show', compact('room'));
         }
     }

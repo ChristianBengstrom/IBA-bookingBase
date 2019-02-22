@@ -19,19 +19,86 @@
   caption {
     background-color:#555
   };
-  // td {
-  //   background-color:#f1f1f1
-  // };
-  // .span1 {
-  //   background-color:gray;
-  // };
-  // .span2 {
-  //   background-color:#f1f1f1;
-  // };
-  // tr {
-  //   background-color:gray;
-  // };
+  em {
+    color: lightgray;
+    font-size: 0.7em;
+    text-align: center;
+    display: block;
+  }
 };
 .selected {
   background-color:lightgreen;
 }
+
+// SVG MAP
+
+svg {
+      max-width: 800px;
+}
+
+text {
+      transition-delay: 2s;
+      display: none;
+      transition: all .5s ease;
+      font-size: 1.5rem;
+      fill: #383838;
+}
+
+a:hover text {
+      transition-delay: 2s;
+      display: block;
+      transition: all .3s ease;
+}
+
+a:hover path {
+      fill: #66d87b;
+}
+
+#canvas {
+      border:1px solid #606060;
+}
+
+.canvasInfo {
+      float: right;
+      background-color: #eee;
+      padding: 0 10px;
+      color: #444;
+}
+
+.svgBox {
+      // float: left;
+}
+
+.canvasInfo-section {
+      display: flex;
+      height: 50px;
+      align-items: center;
+}
+
+.canvasInfo-available-box {
+      content: "";
+      background-color: #b2b2b2;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+}
+
+.canvasInfo-reserved-box {
+      content: "";
+      background-color: red;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+}
+
+.canvasInfo-partially-box {
+      content: "";
+      background-color: orange;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+}
+
+.st0{fill:#FFFFFF;}
+.st1{fill:none;}
+.available{fill:#b2b2b2;}
