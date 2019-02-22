@@ -1,232 +1,243 @@
-<div>
-      @php
-            $canvasWidth = 500;
-            $canvasHeight = 600;
-      @endphp
-      <div class="">
-            @php
-                  echo "X-axis = " . $canvasWidth;
-                  echo "Y-axis = " . $canvasHeight;
-            @endphp
-            <canvas id="canvas" width=<?php echo $canvasWidth; ?> height=<?php echo $canvasHeight; ?> style="border:1px solid #000000;">
+@extends('layout')
 
-            </canvas>
-      </div>
-      @foreach($confiq as $conf)
-          {{-- <h3>{{ $conf->id }}</h3>
-          <h1>Hello</h1> --}}
-      @endforeach
-</div>
+@section('titel', 'Show confiq')
 
-@php
-      dump($confiq)
-@endphp
+@section('js')
+      {{-- <script src="{{ URL::asset('js/scheme.js') }}" charset="utf-8"></script> --}}
+@stop
 
-@php
-      $confiq_json = [];
-@endphp
+@section('content')
+  <div>
+        @php
+              $canvasWidth = 500;
+              $canvasHeight = 600;
+        @endphp
+        <div class="">
+              @php
+                    echo "X-axis = " . $canvasWidth;
+                    echo "Y-axis = " . $canvasHeight;
+              @endphp
+              <canvas id="canvas" width=<?php echo $canvasWidth; ?> height=<?php echo $canvasHeight; ?> style="border:1px solid #000000;">
 
-@foreach ($confiq as $conf)
-      @php
-            array_push($confiq_json, $conf)
-      @endphp
-@endforeach
+              </canvas>
+        </div>
+        @foreach($confiq as $conf)
+            {{-- <h3>{{ $conf->id }}</h3>
+            <h1>Hello</h1> --}}
+        @endforeach
+  </div>
 
-@php
-      echo json_encode($confiq_json);
-@endphp
+  @php
+        dump($confiq)
+  @endphp
 
-<script type="text/javascript">
+  @php
+        $confiq_json = [];
+  @endphp
 
-    // Get canvas related references
-    var canvas=document.getElementById("canvas");
-    var ctx=canvas.getContext("2d");
-    var BB=canvas.getBoundingClientRect();
+  @foreach ($confiq as $conf)
+        @php
+              array_push($confiq_json, $conf)
+        @endphp
+  @endforeach
 
-    var offsetX=BB.left;
-    var offsetY=BB.top;
-    var WIDTH = canvas.width;
-    var HEIGHT = canvas.height;
+  @php
+        echo json_encode($confiq_json);
+  @endphp
 
-    // Drag related variables
-    var dragok = false;
-    var startX;
-    var startY;
+  <script type="text/javascript">
 
-    // an array of objects that define different shapes
-    var d1 = <?php echo json_encode($confiq_json, JSON_PRETTY_PRINT) ?>;
-    var shapes=[];
-    var fillcolor = "#eee";
-    console.log(d1);
-    var d1Length = d1.length;
+      // Get canvas related references
+      var canvas=document.getElementById("canvas");
+      var ctx=canvas.getContext("2d");
+      var BB=canvas.getBoundingClientRect();
 
-    for (var i = 0; i < d1Length; i++) {
-          var shapeX = d1[i].place_x;
-          var shapeY = d1[i].place_y;
-          var shapeWidth = d1[i].width;
-          var shapeHeight = d1[i].height;
-          var shapeRotation = d1[i].rotation;
-          var shapeFurniture = d1[i].furniture;
+      var offsetX=BB.left;
+      var offsetY=BB.top;
+      var WIDTH = canvas.width;
+      var HEIGHT = canvas.height;
 
-          var shapeXINT = parseInt(shapeX, 10);
-          var shapeYINT = parseInt(shapeY, 10);
-          var shapeWidthINT = parseInt(shapeWidth, 10);
-          var shapeHeightINT = parseInt(shapeHeight, 10);
+      // Drag related variables
+      var dragok = false;
+      var startX;
+      var startY;
 
-          if (shapeRotation == 'HT' && shapeFurniture == 'ST') {
-                shapes.push({x:shapeXINT,y:shapeYINT,width:90,height:60,fill:fillcolor,isDragging:false});
-          }
-          if (shapeRotation == 'VT' && shapeFurniture == 'ST') {
-                shapes.push({x:shapeXINT,y:shapeYINT,width:60,height:90,fill:fillcolor,isDragging:false});
-          }
-          if (shapeFurniture == 'SC') {
-                shapes.push({x:shapeXINT,y:shapeYINT,r:12,fill:"#535353",isDragging:false});
-          }
-          if (shapeRotation == 'HT' && shapeFurniture == 'WB') {
-                shapes.push({x:shapeXINT,y:shapeYINT,width:250,height:10,fill:"#933299",isDragging:false});
-          } else if (shapeRotation == 'VT' && shapeFurniture == 'WB') {
-                shapes.push({x:shapeXINT,y:shapeYINT,width:10,height:250,fill:"#933299",isDragging:false});
-          }
-    }
+      // an array of objects that define different shapes
+      var d1 = <?php echo json_encode($confiq_json, JSON_PRETTY_PRINT) ?>;
+      var shapes=[];
+      var fillcolor = "#eee";
+      console.log(d1);
+      var d1Length = d1.length;
 
-    // --- TABLES
-    // define hori rectangles (tables)
-    // shapes.push({x:155,y:100,width:90,height:60,fill:"#a4a5a4",isDragging:false});
+      for (var i = 0; i < d1Length; i++) {
+            var shapeX = d1[i].place_x;
+            var shapeY = d1[i].place_y;
+            var shapeWidth = d1[i].width;
+            var shapeHeight = d1[i].height;
+            var shapeRotation = d1[i].rotation;
+            var shapeFurniture = d1[i].furniture;
 
-    // define vert rectangles (tables)
-    // shapes.push({x:360,y:100,width:60,height:90,fill:"#a4a5a4",isDragging:false});
+            var shapeXINT = parseInt(shapeX, 10);
+            var shapeYINT = parseInt(shapeY, 10);
+            var shapeWidthINT = parseInt(shapeWidth, 10);
+            var shapeHeightINT = parseInt(shapeHeight, 10);
 
-    // --- CHAIRS
-    // define circles (chairs)
+            if (shapeRotation == 'HT' && shapeFurniture == 'ST') {
+                  shapes.push({x:shapeXINT,y:shapeYINT,width:90,height:60,fill:fillcolor,isDragging:false});
+            }
+            if (shapeRotation == 'VT' && shapeFurniture == 'ST') {
+                  shapes.push({x:shapeXINT,y:shapeYINT,width:60,height:90,fill:fillcolor,isDragging:false});
+            }
+            if (shapeFurniture == 'SC') {
+                  shapes.push({x:shapeXINT,y:shapeYINT,r:12,fill:"#535353",isDragging:false});
+            }
+            if (shapeRotation == 'HT' && shapeFurniture == 'WB') {
+                  shapes.push({x:shapeXINT,y:shapeYINT,width:250,height:10,fill:"#933299",isDragging:false});
+            } else if (shapeRotation == 'VT' && shapeFurniture == 'WB') {
+                  shapes.push({x:shapeXINT,y:shapeYINT,width:10,height:250,fill:"#933299",isDragging:false});
+            }
+      }
 
-    // listen for mouse events
-    canvas.onmousedown = myDown;
-    canvas.onmouseup = myUp;
-    canvas.onmousemove = myMove;
+      // --- TABLES
+      // define hori rectangles (tables)
+      // shapes.push({x:155,y:100,width:90,height:60,fill:"#a4a5a4",isDragging:false});
 
-    // call to draw the scene
-    draw();
+      // define vert rectangles (tables)
+      // shapes.push({x:360,y:100,width:60,height:90,fill:"#a4a5a4",isDragging:false});
 
-    // draw a single rect
-    function rect(r) {
-          ctx.fillStyle=r.fill;
-          ctx.fillRect(r.x,r.y,r.width,r.height);
-    }
+      // --- CHAIRS
+      // define circles (chairs)
 
-    // draw a single rect
-    function circle(c) {
-          ctx.fillStyle=c.fill;
-          ctx.beginPath();
-          ctx.arc(c.x,c.y,c.r,0,Math.PI*2);
-          ctx.closePath();
-          ctx.fill();
-    }
+      // listen for mouse events
+      canvas.onmousedown = myDown;
+      canvas.onmouseup = myUp;
+      canvas.onmousemove = myMove;
 
-    // clear the canvas
-    function clear() {
-          ctx.clearRect(0, 0, WIDTH, HEIGHT);
-    }
+      // call to draw the scene
+      draw();
 
-    // redraw the scene
-    function draw() {
-          clear();
-          // redraw each shape in the shapes[] array
-          for(var i=0;i<shapes.length;i++){
-                // decide if the shape is a rect or circle
-                // (it's a rect if it has a width property)
-                if(shapes[i].width){
-                      rect(shapes[i]);
-                } else{
-                      circle(shapes[i]);
-                };
-          }
-    }
+      // draw a single rect
+      function rect(r) {
+            ctx.fillStyle=r.fill;
+            ctx.fillRect(r.x,r.y,r.width,r.height);
+      }
 
-    // handle mousedown events
-    function myDown(e){
-          // tell the browser we're handling this mouse event
-          e.preventDefault();
-          e.stopPropagation();
+      // draw a single rect
+      function circle(c) {
+            ctx.fillStyle=c.fill;
+            ctx.beginPath();
+            ctx.arc(c.x,c.y,c.r,0,Math.PI*2);
+            ctx.closePath();
+            ctx.fill();
+      }
 
-          // get the current mouse position
-          var mx=parseInt(e.clientX-offsetX);
-          var my=parseInt(e.clientY-offsetY);
+      // clear the canvas
+      function clear() {
+            ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      }
 
-          // test each shape to see if mouse is inside
-          dragok=false;
-          for(var i=0;i<shapes.length;i++){
-                var s=shapes[i];
-                // decide if the shape is a rect or circle
-                if(s.width){
-                // test if the mouse is inside this rect
-                      if(mx>s.x && mx<s.x+s.width && my>s.y && my<s.y+s.height){
-                      // if yes, set that rects isDragging=true
-                      dragok=true;
-                      s.isDragging=true;
-                      }
-                } else {
-                      var dx=s.x-mx;
-                      var dy=s.y-my;
-                      // test if the mouse is inside this circle
-                      if(dx*dx+dy*dy<s.r*s.r){
-                      dragok=true;
-                      s.isDragging=true;
-                      }
-                }
-          }
-          // save the current mouse position
-          startX=mx;
-          startY=my;
-    }
+      // redraw the scene
+      function draw() {
+            clear();
+            // redraw each shape in the shapes[] array
+            for(var i=0;i<shapes.length;i++){
+                  // decide if the shape is a rect or circle
+                  // (it's a rect if it has a width property)
+                  if(shapes[i].width){
+                        rect(shapes[i]);
+                  } else{
+                        circle(shapes[i]);
+                  };
+            }
+      }
 
-    // handle mouseup events
-    function myUp(e){
-          // tell the browser we're handling this mouse event
-          e.preventDefault();
-          e.stopPropagation();
+      // handle mousedown events
+      function myDown(e){
+            // tell the browser we're handling this mouse event
+            e.preventDefault();
+            e.stopPropagation();
 
-          // clear all the dragging flags
-          dragok = false;
-          for(var i=0;i<shapes.length;i++){
-                shapes[i].isDragging=false;
-          }
-    }
+            // get the current mouse position
+            var mx=parseInt(e.clientX-offsetX);
+            var my=parseInt(e.clientY-offsetY);
 
-    // handle mouse moves
-    function myMove(e){
-          // if we're dragging anything...
-          if (dragok){
-                // tell the browser we're handling this mouse event
-                e.preventDefault();
-                e.stopPropagation();
+            // test each shape to see if mouse is inside
+            dragok=false;
+            for(var i=0;i<shapes.length;i++){
+                  var s=shapes[i];
+                  // decide if the shape is a rect or circle
+                  if(s.width){
+                  // test if the mouse is inside this rect
+                        if(mx>s.x && mx<s.x+s.width && my>s.y && my<s.y+s.height){
+                        // if yes, set that rects isDragging=true
+                        dragok=true;
+                        s.isDragging=true;
+                        }
+                  } else {
+                        var dx=s.x-mx;
+                        var dy=s.y-my;
+                        // test if the mouse is inside this circle
+                        if(dx*dx+dy*dy<s.r*s.r){
+                        dragok=true;
+                        s.isDragging=true;
+                        }
+                  }
+            }
+            // save the current mouse position
+            startX=mx;
+            startY=my;
+      }
 
-                // get the current mouse position
-                var mx=parseInt(e.clientX-offsetX);
-                var my=parseInt(e.clientY-offsetY);
+      // handle mouseup events
+      function myUp(e){
+            // tell the browser we're handling this mouse event
+            e.preventDefault();
+            e.stopPropagation();
 
-                // calculate the distance the mouse has moved
-                // since the last mousemove
-                var dx=mx-startX;
-                var dy=my-startY;
+            // clear all the dragging flags
+            dragok = false;
+            for(var i=0;i<shapes.length;i++){
+                  shapes[i].isDragging=false;
+            }
+      }
 
-                // move each rect that isDragging
-                // by the distance the mouse has moved
-                // since the last mousemove
-                for(var i=0;i<shapes.length;i++){
-                      var s=shapes[i];
-                            if(s.isDragging){
-                            s.x+=dx;
-                            s.y+=dy;
-                      }
-                }
+      // handle mouse moves
+      function myMove(e){
+            // if we're dragging anything...
+            if (dragok){
+                  // tell the browser we're handling this mouse event
+                  e.preventDefault();
+                  e.stopPropagation();
 
-                // redraw the scene with the new rect positions
-                draw();
+                  // get the current mouse position
+                  var mx=parseInt(e.clientX-offsetX);
+                  var my=parseInt(e.clientY-offsetY);
 
-                // reset the starting mouse position for the next mousemove
-                startX=mx;
-                startY=my;
-          }
-    }
+                  // calculate the distance the mouse has moved
+                  // since the last mousemove
+                  var dx=mx-startX;
+                  var dy=my-startY;
 
-    </script>
+                  // move each rect that isDragging
+                  // by the distance the mouse has moved
+                  // since the last mousemove
+                  for(var i=0;i<shapes.length;i++){
+                        var s=shapes[i];
+                              if(s.isDragging){
+                              s.x+=dx;
+                              s.y+=dy;
+                        }
+                  }
+
+                  // redraw the scene with the new rect positions
+                  draw();
+
+                  // reset the starting mouse position for the next mousemove
+                  startX=mx;
+                  startY=my;
+            }
+      }
+
+      </script>
+
+@endsection
