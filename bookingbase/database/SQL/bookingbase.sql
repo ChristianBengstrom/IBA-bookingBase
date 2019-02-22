@@ -53,7 +53,7 @@ USE bookingbase;
     id int auto_increment,
     name varchar(20) not null,
     room_id int not null,
-    furniture enum('ST','TT','WB') not null, -- ST = student table, TT = teachertable, WB = Board
+    furniture enum('ST','TT','WB','SC') not null, -- ST = student table, TT = teachertable, WB = Board
     rotation enum('VT','HT') not null,
     place_x int not null,
     place_y int not null,
@@ -119,19 +119,20 @@ insert into rooms(id, type, depth, width, ent_direction, ent_location, board_dir
 
 
 -- config
-insert into confiqs(name, room_id, furniture, place_x, place_y, rotation)
-  values('A', 401, 'TT', 2000, 1000, 'VT'),
-        ('A', 401, 'ST', 3000, 1000, 'VT'),
-        ('A', 401, 'ST', 4000, 1000, 'HT'),
-        ('A', 401, 'ST', 5000, 1000, 'VT'),
-        ('A', 401, 'ST', 2000, 2000, 'VT'),
-        ('A', 401, 'ST', 3000, 2000, 'HT'),
-        ('A', 401, 'ST', 4000, 2000, 'HT'),
-        ('A', 401, 'ST', 5000, 2000, 'VT'),
-        ('A', 401, 'ST', 2000, 3000, 'HT'),
-        ('A', 401, 'ST', 3000, 3000, 'VT'),
-        ('A', 401, 'ST', 4000, 3000, 'VT'),
-        ('A', 401, 'ST', 5000, 3000, 'VT');
+INSERT INTO `confiqs` (`id`, `name`, `room_id`, `furniture`, `rotation`, `place_x`, `place_y`) VALUES
+(1, 'A', 401, 'TT', 'HT', 60, 100),
+(2, 'A', 401, 'ST', 'HT', 155, 100),
+(3, 'A', 401, 'ST', 'HT', 250, 100),
+(4, 'A', 401, 'ST', 'HT', 60, 220),
+(5, 'A', 401, 'ST', 'HT', 155, 220),
+(6, 'A', 401, 'ST', 'HT', 250, 220),
+(7, 'A', 401, 'ST', 'HT', 155, 340),
+(8, 'A', 401, 'ST', 'HT', 250, 340),
+(9, 'A', 401, 'ST', 'HT', 45, 480),
+(10, 'A', 401, 'ST', 'HT', 140, 480),
+(11, 'A', 401, 'ST', 'HT', 235, 480),
+(12, 'A', 401, 'ST', 'HT', 330, 480),
+(13, 'A', 401, 'ST', 'VT', 360, 100);
 
 -- reservations
 insert into reservations (room_id, rekv_id, res_module, res_date, bookers_u_id)

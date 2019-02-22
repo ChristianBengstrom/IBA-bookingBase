@@ -16,6 +16,8 @@ Route::get('/', function () {
 
 });
 
+Route::get('room/{room}/confiq/{id}', 'ConfiqController@showConfiq');
+
 // AUTH
 // Route::auth();
 // Route::get('/home', 'HomeController@index');
