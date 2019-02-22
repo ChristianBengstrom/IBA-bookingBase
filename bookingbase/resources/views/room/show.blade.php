@@ -15,7 +15,7 @@
       @endphp
 
       @foreach ($room as $res)
-        <p>Schedule for: <em>{{ $res->res_date }}-{{ $res->res_module }}</em></p>
+        {{-- <p>Schedule for: <em>{{ $res->res_date }}-{{ $res->res_module }}</em></p> --}}
         @php
           array_push($res_json,$res)
         @endphp
@@ -119,15 +119,13 @@
 </table>
 <br>
 
-{{-- {!! Form::model(new App\Models\Reservation, ['route' => ['room.reservation.store', $r->id], 'id' => 'bookForm']) !!}
-    {!! Form::button('Book!', ['type'=>'submit', 'id' => 'book' , 'disabled' => 'true']) !!}
-{!! Form::close() !!} --}}
-
-<form method="POST" action="http://localhost:8000/room/401/reservation" accept-charset="UTF-8" id="bookForm">
-    <input name="_token" type="hidden" value="jdqTIqImXTykzYGTKD3JmfvevpxWymT6ObtkKDAR">
-    {{-- <input name="date" type="number" value="0">
-    <input name="module" type="number" value="0"> --}}
-    <button type="submit" id="book" disabled="true">Book!</button>
-</form>
+@auth
+  {!! Form::model(new App\Models\Reservation, ['route' => ['room.reservation.store', $r->id], 'id' => 'bookForm']) !!}
+      {!! Form::hidden('qtSelected', 0, ['id' => 'qtSelected']); !!}
+      {!! Form::button('Book!', ['type'=>'submit', 'id' => 'book' , 'disabled' => 'true']) !!}
+  {!! Form::close() !!}
+@else
+  <em style="color: red;">{{ 'login to make a reservation' }}</em>
+@endauth
 
 @endsection

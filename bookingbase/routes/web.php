@@ -19,10 +19,14 @@ Route::get('/', function () {
 Route::get('room/{room}/confiq/{id}', 'ConfiqController@showConfiq');
 
 // AUTH
-// Route::auth();
-// Route::get('/home', 'HomeController@index');
+Route::auth();
+Route::get('/home', 'HomeController@index');
 
 Route::resource('room', 'RoomController');
 Route::resource('room.week', 'WeekController');
 Route::resource('room.confiq', 'ConfiqController');
 Route::resource('room.reservation', 'ReservationController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
