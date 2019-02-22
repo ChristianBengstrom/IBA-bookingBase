@@ -71,7 +71,11 @@ ALTER TABLE `users`
     id int auto_increment,
     name varchar(20) not null,
     room_id int not null,
+<<<<<<< HEAD
+    furniture enum('ST','TT','WB','SC') not null, -- ST = student table, TT = teachertable, WB = Board
+=======
     furniture enum('ST','TT','WB','SC') not null, -- ST = student table, TT = teachertable, WB = Board, SC = Student chair
+>>>>>>> 05f0db2fa12b3a507163993da85a35aed6fa561d
     rotation enum('VT','HT') not null,
     place_x int not null,
     place_y int not null,
@@ -141,6 +145,22 @@ insert into rooms(id, type, depth, width, ent_direction, ent_location, board_dir
 
 
 -- config
+<<<<<<< HEAD
+INSERT INTO `confiqs` (`id`, `name`, `room_id`, `furniture`, `rotation`, `place_x`, `place_y`) VALUES
+(1, 'A', 401, 'TT', 'HT', 60, 100),
+(2, 'A', 401, 'ST', 'HT', 155, 100),
+(3, 'A', 401, 'ST', 'HT', 250, 100),
+(4, 'A', 401, 'ST', 'HT', 60, 220),
+(5, 'A', 401, 'ST', 'HT', 155, 220),
+(6, 'A', 401, 'ST', 'HT', 250, 220),
+(7, 'A', 401, 'ST', 'HT', 155, 340),
+(8, 'A', 401, 'ST', 'HT', 250, 340),
+(9, 'A', 401, 'ST', 'HT', 45, 480),
+(10, 'A', 401, 'ST', 'HT', 140, 480),
+(11, 'A', 401, 'ST', 'HT', 235, 480),
+(12, 'A', 401, 'ST', 'HT', 330, 480),
+(13, 'A', 401, 'ST', 'VT', 360, 100);
+=======
   INSERT INTO `confiqs` (`id`, `name`, `room_id`, `furniture`, `rotation`, `place_x`, `place_y`) VALUES
   (1, 'A', 401, 'ST', 'HT', 60, 100),
   (2, 'A', 401, 'ST', 'HT', 155, 100),
@@ -180,6 +200,7 @@ insert into rooms(id, type, depth, width, ent_direction, ent_location, board_dir
   (36, 'A', 401, 'WB', 'HT', 160, 10),
   (37, 'A', 402, 'ST', 'HT', 200, 200),
   (38, 'A', 402, 'ST', 'HT', 295, 200);
+>>>>>>> 05f0db2fa12b3a507163993da85a35aed6fa561d
 
 -- reservations
 insert into reservations (room_id, rekv_id, res_module, res_date, bookers_u_id)

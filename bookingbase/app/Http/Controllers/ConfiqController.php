@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Confiq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Room;
 
 class ConfiqController extends Controller
 {
@@ -15,7 +16,8 @@ class ConfiqController extends Controller
      */
     public function index()
     {
-
+          $confiq = Confiq::all();
+          return view('confiq.confiq', compact('confiq'));
         // Show all confiqs on a room
         // ROUTE: room/{room}/confiq
     }
@@ -47,10 +49,20 @@ class ConfiqController extends Controller
      * @param  App\Models\Confiq  $confiq
      * @return \Illuminate\Http\Response
      */
-    public function show(Confiq $confiq)
-    {
-        // ROUTE: room/{room}/confiq/{confiq}
-    }
+    // public function show(Room $room, Confiq $room_id)
+    // {
+    //       $confiq = Confiq::findOrFail($room);
+    // return view('confiq.show')->withConfiq($confiq);
+    //     // ROUTE: room/{room}/confiq/{confiq}
+    // }
+      public function show() {
+
+      }
+
+      public function showConfiq(Room $room, $id) {
+            $confiq = DB::table('confiqs')->where('room_id', '=', $id)->get();
+            return view('confiq.show', compact('confiq'));
+      }
 
     /**
      * Show the form for editing the specified resource.
