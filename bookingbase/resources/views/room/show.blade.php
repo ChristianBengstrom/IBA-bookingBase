@@ -124,8 +124,12 @@
       {!! Form::hidden('qtSelected', 0, ['id' => 'qtSelected']); !!}
       {!! Form::button('Book!', ['type'=>'submit', 'id' => 'book' , 'disabled' => 'true']) !!}
   {!! Form::close() !!}
+  <br>
+  <a href="{{ route('room.confiq.showconfiq', [$r->id, $r->id])  }}"><button type="button" name="button">Confiq</button></a>
 @else
   <em style="color: red;">{{ 'login to make a reservation' }}</em>
 @endauth
+
+
 
 @endsection
