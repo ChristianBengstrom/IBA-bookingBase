@@ -1,3 +1,35 @@
+<style>
+      .room-span--whiteboard {
+            content: "";
+            background-color: #933299;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 5px;
+            border-radius: 50%;
+      }
+      .room-span--table {
+            content: "";
+            background-color: #eee;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 5px;
+            border-radius: 50%;
+      }
+      .room-span--chair {
+            content: "";
+            background-color: #535353;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 5px;
+            border-radius: 50%;
+      }
+      .room-infobox {
+            max-height: 200px;
+      }
+</style>
 @extends('layout')
 
 @section('titel', 'Show confiq')
@@ -12,24 +44,28 @@
               $canvasWidth = 500;
               $canvasHeight = 600;
         @endphp
-        <div class="">
-              @php
-                    echo "X-axis = " . $canvasWidth;
-                    echo "Y-axis = " . $canvasHeight;
-              @endphp
-              <canvas id="canvas" width=<?php echo $canvasWidth; ?> height=<?php echo $canvasHeight; ?> style="border:1px solid #000000;">
-
-              </canvas>
+        <div class="container">
+              <div class="row">
+                    <div class="col-lg-6 offset-lg-3 mt-5">
+                          @foreach ($confiq as $conf)
+                          @endforeach
+                          <h1 class=" text-secondary">Room <?php echo $conf->room_id; ?></h1>
+                          <canvas id="canvas" width=<?php echo $canvasWidth; ?> height=<?php echo $canvasHeight; ?> style="border:1px solid #000000;">
+                         </canvas>
+                         <p class="mt-2">Please configure your room here!</p>
+                    </div>
+                    <div class="col-lg-3 mt-5 bg-light p-4 room-infobox">
+                          <p><span class="room-span--table"></span>Student Table</p>
+                          <p><span class="room-span--chair"></span>Student Chair</p>
+                          <p><span class="room-span--whiteboard"></span>Whiteboard</p>
+                    </div>
+              </div>
         </div>
         @foreach($confiq as $conf)
             {{-- <h3>{{ $conf->id }}</h3>
             <h1>Hello</h1> --}}
         @endforeach
   </div>
-
-  @php
-        dump($confiq)
-  @endphp
 
   @php
         $confiq_json = [];
@@ -40,10 +76,6 @@
               array_push($confiq_json, $conf)
         @endphp
   @endforeach
-
-  @php
-        echo json_encode($confiq_json);
-  @endphp
 
   <script type="text/javascript">
 
