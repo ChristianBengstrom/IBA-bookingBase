@@ -7,8 +7,8 @@ USE bookingbase;
 -- rekvirent
   -- create table rekvirents(
   --   id int auto_increment primary key,
-  --   user_id int,                          -- nullable!
-  --   class_id varchar(20),                 -- nullable!
+  --   user_id int,
+  --   class_id varchar(20),
   --   unique (user_id, class_id)
   -- );
 
@@ -71,11 +71,7 @@ ALTER TABLE `users`
     id int auto_increment,
     name varchar(20) not null,
     room_id int not null,
-<<<<<<< HEAD
     furniture enum('ST','TT','WB','SC') not null, -- ST = student table, TT = teachertable, WB = Board
-=======
-    furniture enum('ST','TT','WB','SC') not null, -- ST = student table, TT = teachertable, WB = Board, SC = Student chair
->>>>>>> 05f0db2fa12b3a507163993da85a35aed6fa561d
     rotation enum('VT','HT') not null,
     place_x int not null,
     place_y int not null,
