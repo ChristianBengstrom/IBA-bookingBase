@@ -60,6 +60,7 @@ class ReservationController extends Controller
       for ($i=0; $i < count($newResArr); $i++) {
         print '<br />';
         $resDate = null;
+
         for ($c=0; $c < 10; $c++) {
           $resDate .= $newResArr[$i][$c];
         }
@@ -74,9 +75,9 @@ class ReservationController extends Controller
 
         array_push($data,$dataline);
       }
-        dump($data);
+
         DB::table('reservations')->insert($data); // Query Builder approach
-        return view('room.receipt', compact('room'))->with('message', 'Your booking has been registered!');
+        return view('room.receipt', compact('room', 'data'))->with('message', 'Your booking has been registered!');
     }
 
     /**

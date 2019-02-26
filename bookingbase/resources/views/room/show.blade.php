@@ -35,13 +35,16 @@
                 </div>
 
             @endif
-            <div class="col-lg-12 text-center">
+
+            <div class="col-md-6 offset-md-4 text-center">
                   <h1>Schedule for: <em>{{ $r->type }}-{{ $r->id }}</em></h1>
             </div>
 
+
             <div class="col-md-6 offset-md-4">
-                  <table class="scheme" id='scheme'>
-                  <caption>
+              <br>
+                  <table class="scheme table" id='scheme'>
+                  <caption class="text-center bg-light">
                     <a href="{{ route('room.week.show', [$r->id, $r->now_week-1])  }}"><<</a>
                     Week: {{ $r->now_week }}
                     <a href="{{ route('room.week.show', [$r->id, $r->now_week+1])  }}">>></a>
